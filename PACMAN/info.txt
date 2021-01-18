@@ -1,0 +1,41 @@
+edit pacman.vbs to set path / filename of pacman.scr
+see SETTINGS for adding task in task manager to configure screensaver (other option gives black background when using as screensaver)
+
+shift-p start/stop interpolation
+
+p step interpolation
+e erase interpolation file
+m place marker to interpolation file
+
+f-11 change screen / window + showcursor
+
+f-3 3d / orthographic projection
+left mouse button rotate object
+right mouse button zoom in / out
+middle mouse button move object
+escape stop program
+when numlock is on - keypad:
+7 perspective +
+9 perspective -
+ctrl + alt + r vertical sync on
+shift + alt + r vertical sync off
+
+alt + r anti alias +
+ctrl + r anti alias -
+
+ctrl + alt + left / right cursor = add next object from objects/list.txt
+ctrl + system + alt + left / right cursor = next object from objects/list.txt
+
+when numlock is off
+shift/alt/ctrl + keypad rotate / translate
+f-5 f-6 f-7 reset rotation / translation / perspective
+
+d vertex + fragment shader on / off - tab key change shader mode
+
+r / shift-r record start / stop / pause record with ffmpeg.exe (needs to be in dir and / or path) 
+
+(check pacman.ini for right ffmpeg.exe options / flags according to gpu if not working)
+
+directory objects were to place wavefront objects
+
+run makelist.bat to make list.txt for list of objects to display (use ctrl + system + alt + cursor left / right for next / prev object)

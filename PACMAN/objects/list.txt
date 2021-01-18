@@ -1,0 +1,2 @@
+D:\TESTING\objects\Skull\skull.obj
+D:\TESTING\objects\Skull\skull.nbt

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="transparant" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option platforms="Windows;" />
+				<Option output="bin/Release/transparant" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-O3" />
+			<Add option="-Wall" />
+			<Add option="-std=c++14" />
+			<Add option="-m64" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+			<Add option="-static" />
+			<Add option="-m64" />
+			<Add option="-static-libgcc -static-libstdc++" />
+			<Add option="-fstack-protector" />
+			<Add library="lib/libsfml-graphics-s.a" />
+			<Add library="lib/libsfml-window-s.a" />
+			<Add library="lib/libsfml-system-s.a" />
+			<Add library="lib/libopengl32.a" />
+			<Add library="lib/libwinmm.a" />
+			<Add library="lib/libgdi32.a" />
+			<Add library="lib/libws2_32.a" />
+			<Add library="lib/libglfw3.a" />
+			<Add library="lib/libglu32.a" />
+			<Add library="lib/libopenal32.a" />
+			<Add library="lib/libz.a" />
+			<Add library="lib/libglu32.a" />
+			<Add library="lib/libjpeg.a" />
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="Transparent.cpp" />
+		<Unit filename="trans_window.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
