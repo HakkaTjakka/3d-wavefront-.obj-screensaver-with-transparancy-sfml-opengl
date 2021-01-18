@@ -5,3 +5,5 @@
 [![Demo CountPages alpha](https://github.com/HakkaTjakka/3d-wavefront-.obj-screensaver-with-transparancy-sfml-opengl/blob/main/Untitled.png)](https://www.youtube.com/embed/nHeCBMMrYIY)
 (Click to play vid)
 ***
+[![Demo CountPages alpha](https://github.com/HakkaTjakka/3d-wavefront-.obj-screensaver-with-transparancy-sfml-opengl/blob/main/Untitled2.png)](https://www.youtube.com/embed/HnZSZOdTn-8)
+***
