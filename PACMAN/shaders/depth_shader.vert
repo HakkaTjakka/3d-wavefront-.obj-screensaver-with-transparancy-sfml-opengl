@@ -23,10 +23,19 @@ uniform vec3 move;
 uniform vec4 add_xyz;
 uniform vec3 translation;
 
-float time_phase=wave_phase/10.0;
+//float time_phase=wave_phase/10.0;
+float time_phase=wave_phase/5.0;
 //out vec3 my_normal;
+
 out vec3 kS_x_spec_;
 out float diff_;
+out vec3 ro;
+out vec3 n;
+out vec3 lp1;
+out vec3 lp2;
+out vec3 lp3;
+out vec3 lp4;
+
 
 
 //out mat4 my_modelviewmatrix;
@@ -100,8 +109,8 @@ void main()
             gl_Position = gl_ProjectionMatrix * vertex2;
 //            gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
 
-            vec3 ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-            vec3 n = normalize(gl_Normal);
+            ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
+            n = normalize(gl_Normal);
 
 //            vec2 off1=vec2( sin(time_phase/3.0) , cos(time_phase/3.0) )  ;
 
@@ -110,10 +119,10 @@ void main()
             vec2 off3=7.4*vec2( sin(time_phase/9.3+off2.x/4.8) ,           cos(time_phase/9.3+off2.y/3.5)        )  ;
             vec2 off4=7.4*vec2( sin(time_phase/7.6+off3.x/2.5) ,    cos(time_phase/7.6+off3.y/1.9) )  ;
 
-            vec3 lp1=normalize( (  vec4(off4.x,  0.0-(+1.0+off1.y/8.8), off4.y, 1.0) *      gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp2=normalize( (  vec4(off2.x,  2.0+1.0+off1.x/8.8, off2.y, 1.0) *         gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp3=normalize( (  vec4(-off4.x, 2.0+off2.x/8.8, -off4.y, 1.0) *            gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp4=normalize( (  vec4(-off2.x,  -2.0-(1.0+off2.y/8.8), -off2.y, 1.0) *    gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp1=normalize( (  vec4(off4.x,  0.0-(+1.0+off1.y/8.8), off4.y, 1.0) *      gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp2=normalize( (  vec4(off2.x,  2.0+1.0+off1.x/8.8, off2.y, 1.0) *         gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp3=normalize( (  vec4(-off4.x, 2.0+off2.x/8.8, -off4.y, 1.0) *            gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp4=normalize( (  vec4(-off2.x,  -2.0-(1.0+off2.y/8.8), -off2.y, 1.0) *    gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
 //            vec3 lp1=normalize( (  vec4(-4.0,  0.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
 //            vec3 lp2=normalize( (  vec4( 0.0,  1.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
 
@@ -122,6 +131,7 @@ void main()
 //            vec3 lp1=normalize( (  vec4(-4.0,  0.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
 //            vec3 lp2=normalize( (  vec4( 0.0,  1.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
 
+/*
             float spec1 = (2.0) * clamp(pow(max( dot(reflect(lp1, n), ro), 0.), 120.),0.0,1.0);
             float spec2 = (2.0) * clamp(pow(max( dot(reflect(lp2, n), ro), 0.), 120.),0.0,1.0);
             float spec3 = (2.0) * clamp(pow(max( dot(reflect(lp3, n), ro), 0.), 120.),0.0,1.0);
@@ -147,6 +157,7 @@ void main()
 //            kS_x_spec_ =  spec1 + spec2 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec1 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec2 + vec3(0.10, 0.10, 0.10);
+*/
 
             z_=1.0;
 //            z_=1.0-gl_Position.z/3.0;
@@ -162,7 +173,8 @@ void main()
 //                else if ( (gl_VertexID%3)==1 ) out_color=vec4(0.0,1.0,0.0,0.5);
 //                else if ( (gl_VertexID%3)==2 ) out_color=vec4(0.0,0.0,1.0,0.5);
 //                if (  (gl_VertexID%6)==0 || (gl_VertexID%6)==1 || (gl_VertexID%6==2) ) {
-                    out_color =- vec4(1.0,0.2,0.8,1.0-gl_Position.z/0.3);
+                    out_color =- vec4(1.0,0.2,0.8,-2.5+gl_Position.z/0.3);
+//                    out_color =- vec4(1.0,0.2,0.8,1.0-gl_Position.z/0.3);
 //                    out_color = vec4(0.0,0.0,0.0,1.0);
 //                } else {
 //                    out_color = vec4(0.0,0.0,0.0,1.0-gl_Position.z/.3);
@@ -172,28 +184,20 @@ void main()
 
 //            gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
 
-            vec3 ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-            vec3 n = normalize(gl_Normal);
+            ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
+            n = normalize(gl_Normal);
 
-//            vec2 off1=vec2( sin(time_phase/3.0) , cos(time_phase/3.0) )  ;
+            vec2 off1=6.4*vec2( sin(time_phase/9.3) ,           cos(time_phase/9.3)        )  ;
+            vec2 off2=6.4*vec2( sin(time_phase/7.6+off1.x) ,    cos(time_phase/7.6+off1.y) )  ;
+            vec2 off3=6.4*vec2( sin(time_phase/9.3+off2.x/4.8) ,           cos(time_phase/9.3+off2.y/3.5)        )  ;
+            vec2 off4=6.4*vec2( sin(time_phase/7.6+off3.x/2.5) ,    cos(time_phase/7.6+off3.y/1.9) )  ;
 
-            vec2 off1=4.4*vec2( sin(time_phase/9.3) ,           cos(time_phase/9.3)        )  ;
-            vec2 off2=4.4*vec2( sin(time_phase/7.6+off1.x) ,    cos(time_phase/7.6+off1.y) )  ;
-            vec2 off3=4.4*vec2( sin(time_phase/9.3+off2.x/4.8) ,           cos(time_phase/9.3+off2.y/3.5)        )  ;
-            vec2 off4=4.4*vec2( sin(time_phase/7.6+off3.x/2.5) ,    cos(time_phase/7.6+off3.y/1.9) )  ;
+            lp1=normalize( (  vec4(off4.x,  0.0-(+1.0+off1.y/8.8), off4.y, 1.0) *      gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp2=normalize( (  vec4(off2.x,  1.0+1.0+off1.x/8.8, off2.y, 1.0) *         gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp3=normalize( (  vec4(-off4.x, 1.0+off2.x/8.8, -off4.y, 1.0) *            gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
+            lp4=normalize( (  vec4(-off2.x,  -1.0-(1.0+off2.y/8.8), -off2.y, 1.0) *    gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
 
-            vec3 lp1=normalize( (  vec4(off4.x,  0.0-(+1.0+off1.y/8.8), off4.y, 1.0) *      gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp2=normalize( (  vec4(off2.x,  1.0+1.0+off1.x/8.8, off2.y, 1.0) *         gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp3=normalize( (  vec4(-off4.x, 1.0+off2.x/8.8, -off4.y, 1.0) *            gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-            vec3 lp4=normalize( (  vec4(-off2.x,  -1.0-(1.0+off2.y/8.8), -off2.y, 1.0) *    gl_ModelViewMatrix  ).xyz) ; // zzzzz 2.0
-//            vec3 lp1=normalize( (  vec4(-4.0,  0.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-//            vec3 lp2=normalize( (  vec4( 0.0,  1.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-
-
-
-//            vec3 lp1=normalize( (  vec4(-4.0,  0.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-//            vec3 lp2=normalize( (  vec4( 0.0,  1.0, 0.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-
+/*
             float spec1 = (2.0) * clamp(pow(max( dot(reflect(lp1, n), ro), 0.), 120.),0.0,1.0);
             float spec2 = (2.0) * clamp(pow(max( dot(reflect(lp2, n), ro), 0.), 120.),0.0,1.0);
             float spec3 = (2.0) * clamp(pow(max( dot(reflect(lp3, n), ro), 0.), 120.),0.0,1.0);
@@ -215,13 +219,17 @@ void main()
 
             if (spec1>spec2) kS_x_spec_ =  spec1*vec3(1.0, 1.0, 1.0) + vec3(0.10, 0.10, 0.10);
             else             kS_x_spec_ =  spec2*vec3(1.0, 1.0, 1.0) + vec3(0.10, 0.10, 0.10);
+*/
 
 //            kS_x_spec_ =  spec1 + spec2 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec1 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec2 + vec3(0.10, 0.10, 0.10);
 
-//            z_=1.0-gl_Position.z/5.0;
-            z_=1.0;
+//            z_=1.3-gl_Position.z/3.5;
+//            z_=2.0-gl_Position.z/6.0;
+//            z_=1.0-gl_Position.z/6.0;
+            z_=1.0-gl_Position.z/6.0;
+//            z_=1.0;
             break;
         }
         case 3 : {
@@ -259,21 +267,22 @@ void main()
 //            gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
 
 
-            vec3 ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-            vec3 n = normalize(gl_Normal);
+            ro = normalize( (  vec4(0.0, .0, -1.0, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
+            n = normalize(gl_Normal);
 
             vec2 off1=vec2( sin(time_phase/3.0) , cos(time_phase/3.0) )  ;
 
-            vec3 lp1=normalize( (  vec4(1.4,   -1.8, -0.7, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
-            vec3 lp2=normalize( (  vec4(-1.4,  -1.5, 1.4, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
+            lp1=normalize( (  vec4(1.4,   -1.8, -0.7, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
+            lp2=normalize( (  vec4(-1.4,  -1.5, 1.4, 1.0) * gl_ModelViewMatrix).xyz) ; // zzzzz 2.0
 
+/*
             float spec1 = (1.0) * clamp(pow(max( dot(reflect(lp1, n), ro), 0.), 120.),0.1,1.0);
             float spec2 = (1.0) * clamp(pow(max( dot(reflect(lp2, n), ro), 0.), 120.),0.0,1.0);
 
             float diff1 = 1.5 * clamp(dot( n,lp1), 0.2, 1.);
             float diff2 = 1.5 * clamp(dot( n,lp2), 0.2, 1.);
 
-            diff_ = (diff1+diff2)/2.0;
+//            diff_ = (diff1+diff2)/2.0;
 //            diff_ = diff1;
 //            diff_ = diff2;
             if (diff1>diff2) diff_=diff1;
@@ -289,9 +298,10 @@ void main()
 //            kS_x_spec_ =  spec1 + spec2 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec1 + vec3(0.10, 0.10, 0.10);
 //            kS_x_spec_ = spec2 + vec3(0.10, 0.10, 0.10);
-
-//            z_=1.0-gl_Position.z/2.0;
-            z_=1.0;
+*/
+//            z_=2.0-gl_Position.z/2.5;
+            z_=1.0-gl_Position.z/6.0;
+//            z_=1.0;
             break;
         }
     }

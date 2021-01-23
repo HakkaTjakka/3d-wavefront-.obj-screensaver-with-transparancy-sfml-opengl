@@ -2,6 +2,6 @@
 d:
 cd \testing\pacman
 rem set PATH=
-PACMAN.EXE %*
+PACMAN.scr %*
 exit
 

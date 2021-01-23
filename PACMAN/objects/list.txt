@@ -1,1 +1,1 @@
-D:\TESTING\PACMAN\objects\formula 1\Formula 1 mesh.obj
+D:\TESTING\PACMAN\objects\Skull\skull.obj
