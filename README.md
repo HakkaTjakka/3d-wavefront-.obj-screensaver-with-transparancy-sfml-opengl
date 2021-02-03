@@ -1,5 +1,9 @@
 # 3d-wavefront-.obj-screensaver-with-transparancy-sfml-opengl
 
+changes: added ffmpeg.exe desktop grab to use as background image for smoother transparent pixels at edge of 3d object.
+(With transparent background also non-full transparent pixels are drawn 100% opaque (non transparent)). 
+ffmpeg.exe included.
+
 changes: pong lightning by fragment shader instead of vertex shader.
 
 
